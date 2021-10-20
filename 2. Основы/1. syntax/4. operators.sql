@@ -92,8 +92,8 @@ begin
     --подробнее на лекции 3. Курсоры
     */
 
-    --цикл по sys_refcursor
-    for i in v_cursor
+    --цикл по cursor is select, не по sys_refcursor
+    for i in cursor
     loop
 
         null; --code

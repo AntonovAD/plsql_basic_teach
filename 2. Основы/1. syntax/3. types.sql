@@ -77,6 +77,12 @@ declare
     -- потому что это таблица, а не массив
     -- обращение по индексу через ()
 
+    type my_record is record (id number, value varchar2(100));
+
+    type arr_record is table of my_record
+    index by binary_integer;
+    var_name arr_record;
+
     /*
     DATE_TYPES
     */

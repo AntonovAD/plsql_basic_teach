@@ -1,3 +1,6 @@
+
+--НЕЯВНЫЕ
+
 declare
 
     cursor cursor_1 is

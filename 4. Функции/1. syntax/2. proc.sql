@@ -143,7 +143,7 @@ end;
 /
 
 grant select on antonov.test_table to student;
-revoke select on antonov.test_table from student;
+--revoke select on antonov.test_table from student;
 
 --create or replace не трогает выданные на обьект гранты
 

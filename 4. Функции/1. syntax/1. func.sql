@@ -22,7 +22,7 @@ create or replace function student.get_hospital_by_id (
 
 return student.hospitals%rowtype
 
-as --is
+as --is --declare
 --здесь допускается использование обоих
 
     /**
@@ -54,7 +54,7 @@ begin
     from student.hospitals h
     where h.id_hospital = p_id_hospital;
 
-    dbms_output.put_line('in function');
+    dbms_output.put_line('in function 1');
     dbms_output.put_line(v_hospital.id_hospital||' | '||v_hospital.name);
 
     --return в любом месте завершает выполнение функции
@@ -115,16 +115,13 @@ begin
             select h.id_hospital
             from student.hospitals h
             order by dbms_random.random()
-             ) h
+        ) h
         where rownum = 1
     ) h;
 
-    select *
-    into v_hospital
-    from student.hospitals h
-    where h.id_hospital = v_id_hospital;
+    v_hospital := student.get_hospital_by_id(v_id_hospital);
 
-    dbms_output.put_line('in function');
+    dbms_output.put_line('in function 2');
     dbms_output.put_line(v_hospital.id_hospital||' | '||v_hospital.name);
 
     return v_hospital;

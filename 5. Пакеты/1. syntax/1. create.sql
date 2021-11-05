@@ -35,6 +35,9 @@ as
     --number
     c_number_constant constant number := 100;
 
+    --enum
+    c_id_hospital constant number := 1;
+
     --boolean
     c_is_debug constant boolean := true;
 
@@ -52,7 +55,7 @@ as
     );
 
     --record array (table)
-    type t_arr_record is table of t_record --student.pkg_util.t_record
+    type t_arr_record is table of t_record --student.pkg_const.t_record
     index by binary_integer;
 
     --cursor

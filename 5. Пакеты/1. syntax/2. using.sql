@@ -14,6 +14,26 @@ end;
 
 
 
+--ORA-06553
+select *
+from student.hospitals h
+where h.id_hospital = student.pkg_const.c_id_hospital;
+
+--but this work
+declare
+    v_hospital student.hospitals%rowtype;
+begin
+    select *
+    into v_hospital
+    from student.hospitals h
+    where h.id_hospital = student.pkg_const.c_id_hospital;
+
+    dbms_output.put_line(v_hospital.name);
+end;
+/
+
+
+
 declare
 
     v_arr_number student.pkg_const.t_arr_number;

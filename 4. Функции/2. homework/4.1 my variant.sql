@@ -230,38 +230,32 @@ create or replace function antonov.check_for_accept(
 )
 return boolean
 as
-    v_result boolean := false;
+    v_result boolean := true;
 begin
-    if (not antonov.check_if_already_journal(
+    if (antonov.check_if_already_journal(
         p_id_ticket => p_id_ticket,
         p_id_patient => p_id_patient
     )) then
-        v_result := true;
-    else
         v_result := false;
         out_messages := out_messages||chr(10)
             ||'- пациент уже записан на этот талон';
         if (p_lazy_check) then return v_result; end if;
     end if;
 
-    if (antonov.check_if_sex_match(
+    if (not antonov.check_if_sex_match(
         p_id_patient => p_id_patient,
         p_id_specialty => p_id_specialty
     )) then
-        v_result := true;
-    else
         v_result := false;
         out_messages := out_messages||chr(10)
             ||'- несовпадение пола пациента с полом специальности';
         if (p_lazy_check) then return v_result; end if;
     end if;
 
-    if (antonov.check_if_age_match(
+    if (not antonov.check_if_age_match(
         p_id_patient => p_id_patient,
         p_id_specialty => p_id_specialty
     )) then
-        v_result := true;
-    else
         v_result := false;
         out_messages := out_messages||chr(10)
             ||'- непопадание по возрасту пациента в возрастной диапазон специальности';
